@@ -19,6 +19,8 @@ public class HelloServlet extends HttpServlet {
     public void init() {
         ServletConfig config = getServletConfig();
         username = config.getInitParameter("username");
+        password = config.getInitParameter("password");
+        url = config.getInitParameter("url");
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
