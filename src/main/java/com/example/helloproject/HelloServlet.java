@@ -6,8 +6,8 @@ import javax.servlet.annotation.*;
 
 @WebServlet(name = "helloServlet", value = "/helloServlet" , loadOnStartup = 1,initParams = {
         @WebInitParam(name = "username", value = "root"),
-        @WebInitParam(name = "password", value = "12345678")
-        @WebInitParam(name = "url", value = "jdbc:mysql://localhost:3306/")
+        @WebInitParam(name = "password", value = "12345678"),
+        @WebInitParam(name = "url", value = "jdbc:mysql://localhost:3306/gdse66_hello")
 })
 public class HelloServlet extends HttpServlet {
     private String message;
