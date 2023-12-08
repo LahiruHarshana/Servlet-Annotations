@@ -45,11 +45,6 @@ public class HelloServlet extends HttpServlet {
 
 
             stm.executeUpdate();
-
-
-
-
-            response.setContentType("text/html");
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
