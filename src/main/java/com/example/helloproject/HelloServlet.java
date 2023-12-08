@@ -1,6 +1,9 @@
 package com.example.helloproject;
 
 import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import javax.servlet.ServletConfig;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -24,9 +27,12 @@ public class HelloServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Connection connection = null;
         try {
             Class.forName("com.mysqljdbc.Driver");
-        } catch (ClassNotFoundException e) {
+            connection = DriverManager.getConnection(url, username, password);
+            connection.prepareStatement("Insert into customer values (id,name,address)").executeUpdate();
+        } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
     }
