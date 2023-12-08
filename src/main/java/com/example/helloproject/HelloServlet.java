@@ -3,6 +3,7 @@ package com.example.helloproject;
 import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.servlet.ServletConfig;
 import javax.servlet.http.*;
@@ -31,7 +32,21 @@ public class HelloServlet extends HttpServlet {
         try {
             Class.forName("com.mysqljdbc.Driver");
             connection = DriverManager.getConnection(url, username, password);
-            connection.prepareStatement("Insert into customer values (id,name,address)").executeUpdate();
+            PreparedStatement stm = connection.prepareStatement("Insert into customer values (id,name,address) VALUES (?,?,?)");
+
+
+            String id = request.getParameter("id");
+            String name = request.getParameter("name");
+            String address = request.getParameter("address");
+
+            stm.setString(1, id);
+            stm.setString(2, name);
+            stm.setString(3, address);
+
+
+
+
+            response.setContentType("text/html");
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
