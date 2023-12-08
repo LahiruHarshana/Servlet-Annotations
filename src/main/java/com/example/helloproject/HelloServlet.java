@@ -18,7 +18,7 @@ public class HelloServlet extends HttpServlet {
     @Override
     public void init() {
         ServletConfig config = getServletConfig();
-
+        username = config.getInitParameter("username");
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
