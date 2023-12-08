@@ -1,6 +1,7 @@
 package com.example.helloproject;
 
 import java.io.*;
+import javax.servlet.ServletConfig;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
@@ -12,9 +13,11 @@ import javax.servlet.annotation.*;
 public class HelloServlet extends HttpServlet {
     private String username;
     private String password;
+    private String url;
 
     @Override
     public void init() {
+        ServletConfig config = getServletConfig();
 
     }
 
