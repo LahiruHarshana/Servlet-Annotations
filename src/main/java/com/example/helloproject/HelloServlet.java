@@ -10,10 +10,12 @@ import javax.servlet.annotation.*;
         @WebInitParam(name = "url", value = "jdbc:mysql://localhost:3306/gdse66_hello")
 })
 public class HelloServlet extends HttpServlet {
-    private String message;
+    private String username;
+    private String password;
 
+    @Override
     public void init() {
-        message = "Hello World!";
+
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
