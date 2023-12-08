@@ -27,24 +27,32 @@ public class HelloServlet extends HttpServlet {
         url = config.getInitParameter("url");
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Connection connection = null;
         try {
-            Class.forName("com.mysqljdbc.Driver");
-            connection = DriverManager.getConnection(url, username, password);
-            PreparedStatement stm = connection.prepareStatement("Insert into customer values (id,name,address) VALUES (?,?,?)");
 
 
             String id = request.getParameter("id");
             String name = request.getParameter("name");
             String address = request.getParameter("address");
 
-            stm.setString(1, id);
-            stm.setString(2, name);
-            stm.setString(3, address);
+            System.out.println(id+" "+name+" "+address);
+            Class.forName("com.mysqljdbc.Driver");
+            connection = DriverManager.getConnection(url, username, password);
+//            PreparedStatement stm = connection.prepareStatement("Insert into customer values (id,name,address) VALUES (?,?,?)");
+//
+//
 
 
-            stm.executeUpdate();
+
+            System.out.println();
+//
+//            stm.setString(1, id);
+//            stm.setString(2, name);
+//            stm.setString(3, address);
+//
+//
+//            stm.executeUpdate();
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
