@@ -5,7 +5,8 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
 @WebServlet(name = "helloServlet", value = "/helloServlet" , loadOnStartup = 1,initParams = {
-        @WebInitParam(name = "name", value = "value")
+        @WebInitParam(name = "", value = "")
+        @WebInitParam(name = "", value = "")
 })
 public class HelloServlet extends HttpServlet {
     private String message;
