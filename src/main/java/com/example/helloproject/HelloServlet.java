@@ -44,6 +44,9 @@ public class HelloServlet extends HttpServlet {
             stm.setString(3, address);
 
 
+            stm.executeUpdate();
+
+
 
 
             response.setContentType("text/html");
