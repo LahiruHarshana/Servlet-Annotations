@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
@@ -30,34 +31,89 @@ public class HelloServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Connection connection = null;
         try {
-
-
             String id = request.getParameter("id");
             String name = request.getParameter("name");
             String address = request.getParameter("address");
 
-            System.out.println(id+" "+name+" "+address);
-            Class.forName("com.mysqljdbc.Driver");
+            System.out.println(id + " " + name + " " + address);
+            Class.forName("com.mysql.jdbc.Driver");  // Fix the typo in the driver class name
             connection = DriverManager.getConnection(url, username, password);
-//            PreparedStatement stm = connection.prepareStatement("Insert into customer values (id,name,address) VALUES (?,?,?)");
-//
-//
+            PreparedStatement stm = connection.prepareStatement("INSERT INTO customer (id, name, address) VALUES (?, ?, ?)");
 
-
-
-            System.out.println();
-//
-//            stm.setString(1, id);
-//            stm.setString(2, name);
-//            stm.setString(3, address);
-//
-//
-//            stm.executeUpdate();
+            stm.setString(1, id);
+            stm.setString(2, name);
+            stm.setString(3, address);
+            stm.executeUpdate();
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ignore) {
+                    // Handle the exception as needed
+                }
+            }
         }
     }
 
-    public void destroy() {
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Connection connection = null;
+        try {
+            String id = req.getParameter("id");
+            String name = req.getParameter("name");
+            String address = req.getParameter("address");
+
+            System.out.println(id + " " + name + " " + address);
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection(url, username, password);
+            PreparedStatement stm = connection.prepareStatement("UPDATE customer SET name = ?, address = ? WHERE id = ?");
+
+            stm.setString(1, name);
+            stm.setString(2, address);
+            stm.setString(3, id);
+            stm.executeUpdate();
+
+
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ignore) {
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Connection connection = null;
+        try {
+            String id = req.getParameter("id");
+
+            System.out.println(id );
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection(url, username, password);
+            PreparedStatement stm = connection.prepareStatement("DELETE FROM customer WHERE id = ?");
+
+            stm.setString(1, id);
+
+            stm.executeUpdate();
+
+
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ignore) {
+                }
+            }
+        }
+
     }
 }
