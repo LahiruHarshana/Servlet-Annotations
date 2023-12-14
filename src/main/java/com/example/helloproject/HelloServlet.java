@@ -102,8 +102,6 @@ public class HelloServlet extends HttpServlet {
             stm.setString(1, id);
 
             stm.executeUpdate();
-
-
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         } finally {
