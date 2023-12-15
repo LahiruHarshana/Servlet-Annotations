@@ -26,7 +26,6 @@ public class HelloServlet extends HttpServlet {
         password = config.getInitParameter("password");
         url = config.getInitParameter("url");
     }
-
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Connection connection = null;
         try {
