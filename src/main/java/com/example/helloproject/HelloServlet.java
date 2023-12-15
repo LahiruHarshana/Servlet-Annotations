@@ -36,7 +36,7 @@ public class HelloServlet extends HttpServlet {
             String address = request.getParameter("address");
 
             System.out.println(id + " " + name + " " + address);
-            Class.forName("com.mysql.jdbc.Driver");  // Fix the typo in the driver class name
+            Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(url, username, password);
             PreparedStatement stm = connection.prepareStatement("INSERT INTO customer (id, name, address) VALUES (?, ?, ?)");
 
@@ -109,6 +109,7 @@ public class HelloServlet extends HttpServlet {
                 try {
                     connection.close();
                 } catch (SQLException ignore) {
+
                 }
             }
         }
