@@ -19,7 +19,6 @@ public class HelloServlet extends HttpServlet {
     private String username;
     private String password;
     private String url;
-
     @Override
     public void init() {
         ServletConfig config = getServletConfig();
