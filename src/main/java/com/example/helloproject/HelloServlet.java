@@ -84,7 +84,6 @@ public class HelloServlet extends HttpServlet {
             }
         }
     }
-
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Connection connection = null;
