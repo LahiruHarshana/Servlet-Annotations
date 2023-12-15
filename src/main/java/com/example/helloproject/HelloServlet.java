@@ -105,7 +105,6 @@ public class HelloServlet extends HttpServlet {
                 try {
                     connection.close();
                 } catch (SQLException ignore) {
-
                 }
             }
         }
