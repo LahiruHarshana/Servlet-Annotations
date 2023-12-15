@@ -51,7 +51,7 @@ public class HelloServlet extends HttpServlet {
                 try {
                     connection.close();
                 } catch (SQLException ignore) {
-                    // Handle the exception as needed
+
                 }
             }
         }
