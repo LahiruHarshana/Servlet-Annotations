@@ -79,6 +79,7 @@ public class HelloServlet extends HttpServlet {
                 try {
                     connection.close();
                 } catch (SQLException ignore) {
+
                 }
             }
         }
@@ -88,7 +89,6 @@ public class HelloServlet extends HttpServlet {
         Connection connection = null;
         try {
             String id = req.getParameter("id");
-
             System.out.println(id );
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(url, username, password);
